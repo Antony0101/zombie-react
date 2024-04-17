@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
+    "build-example": "tsc --project example/tsconfig.json",
+    "build": "tsup",
+    "dev": "npm run build-example && tsx watch src_zombie/index.ts",
     "start": "node ./dist/index.js"
   },
   "repository": {
@@ -22,8 +25,18 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.2",
     "tsup": "^8.0.2",
+    "tsx": "^4.7.2",
     "typescript": "^5.4.3",
     "vitest": "^1.5.0"
+  },
+  "tsup": {
+    "dts": true,
+    "outdir": "dist",
+    "format": ["esm", "cjs"],
+    "entry": ["src_zombie/index.ts"],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
   },
   "dependencies": {
     "express": "^4.19.2",
